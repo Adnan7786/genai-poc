@@ -1,0 +1,29 @@
+{
+  "web_urls": [
+    "https://docs.apigee.com/api-platform/get-started/get-started",
+    "https://docs.apigee.com/api-platform/get-started/create-proxy",
+    "https://docs.apigee.com/api-platform/get-started/test-proxy",
+    "https://docs.apigee.com/api-platform/get-started/what-apigee-edge",
+    "https://docs.apigee.com/api-platform/get-started/basic-concepts",
+    "https://docs.apigee.com/api-platform/fundamentals/developing-apigee-edge",
+    "https://docs.apigee.com/api-platform/fundamentals/api-development-lifecycle",
+    "https://docs.apigee.com/api-platform/publish/what-api-product",
+    "https://docs.apigee.com/api-platform/publish/create-api-products",
+    "https://docs.apigee.com/api-platform/publish/adding-developers-your-api-product",
+    "https://docs.apigee.com/api-platform/publish/creating-apps-surface-your-api",
+    "https://docs.apigee.com/api-platform/publish/import-existing-consumer-keys-and-secrets",
+    "https://docs.apigee.com/api-platform/fundamentals/apigee-edge-organization-structure",
+    "https://docs.apigee.com/api-platform/fundamentals/understanding-apis-and-api-proxies",
+    "https://docs.apigee.com/api-platform/fundamentals/download-api-proxies",
+    "https://docs.apigee.com/api-platform/fundamentals/build-simple-api-proxy",
+    "https://docs.apigee.com/api-platform/fundamentals/understanding-routes",
+    "https://docs.apigee.com/api-platform/fundamentals/faq-configuring-virtual-hosts-edge-cloud",
+    "https://docs.apigee.com/api-platform/fundamentals/what-are-flows",
+    "https://docs.apigee.com/api-platform/fundamentals/understanding-handling-request-response-data",
+    "https://docs.apigee.com/api-platform/fundamentals/fault-handling",
+    "https://docs.apigee.com/api-platform/fundamentals/what-you-need-know-about-policy-errors",
+    "https://docs.apigee.com/api-platform/get-started/change-endpoint",
+    "https://docs.apigee.com/api-platform/get-started/add-policy",
+    "https://docs.apigee.com/api-platform/fundamentals/structure-api-proxies"
+  ]
+}

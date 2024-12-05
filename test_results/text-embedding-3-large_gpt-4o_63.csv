@@ -1,0 +1,435 @@
+Question,Expected Response,AI Response,Match
+True or False: Apigee Edge automatically creates consumer keys and secrets when you create developer apps and manage API keys,TRUE,True.,True
+"True or False: When importing existing consumer keys and secrets, you can import multiple at a time. ",FALSE,False. The process involves recreating the existing keys in Edge one at a time.,True
+True or False: API proxies are entry points for one application to use the capabilities of another. ,TRUE,"False. API proxies are not the entry points themselves; rather, they are implemented to create APIs, which serve as the entry points for one application to use the capabilities of another.",False
+"True or False: API proxies can execute conditionally, based on factors such as user agent.",TRUE,True.,True
+True or False: API proxies can only be debugged using print statements. ,FALSE,"False. API proxies can be debugged using the Trace tool in Apigee Edge, which provides a graphical way to examine the execution flow and view variable values.",True
+True or False: The primary mechanism for controlling who can access your APIs is app registration. ,TRUE,True.,True
+True or False: You must be an organization administrator to register apps and manage API keys. ,TRUE,True.,True
+True or False: An app can be registered using methods such as the API or via your portal. ,TRUE,True.,True
+"True or False: When you create an app, you can change its name at any time. ",FALSE,False.,True
+True or False: API calls to API proxies do not require an API key. ,FALSE,"False. API calls to API proxies require an API key, but the enforcement of the API key is not automatic. API publishers need to include a VerifyAPIKey policy or an OAuth/VerifyAccessToken policy in the API proxy to validate the request credentials.",True
+True or False: API products can only contain APIs from a single API proxy. ,FALSE,"False. API products can contain API resources from one or more APIs, allowing you to mix and match resources to create specialized feature sets.",False
+"True or False: API keys are provisioned for API products, not for APIs themselves. ",TRUE,True.,True
+"True or False: By default, requests to obtain a key to access an API product require manual approval. ",FALSE,"False. By default, all requests to obtain a key to access an API product from an app are automatically approved.",False
+True or False: Quotas protect your backend servers for high traffic and differentiate your product line. ,TRUE,True.,True
+True or False: You can define any OAuth scopes as a comma-separated list. ,TRUE,True.,True
+True or False: Private API products are available to all developers. ,FALSE,False.,True
+True or False: An API is an application programming interface that makes it easy for one application to consume capabilities or data from another application. ,TRUE,True.,True
+True or False: API resources are bundled into API packages. ,FALSE,"False. API resources are bundled into API products, and API products can be bundled into API packages.",True
+"True or False: Apigee Edge only provides one deployment environment: ""test"". ",FALSE,"False. Apigee Edge provides at least two deployment environments: ""test"" and ""prod"".",True
+True or False: The Edge UI can be used to create API proxies that bundle proxies for exposure to client requests. [TRUE],TRUE,"False. The Edge UI can be used to create API products that bundle proxies for exposure to client requests, not the proxies themselves.",False
+What is the correct XML configuration for a ProxyEndpoint that listens on both HTTP and HTTPS?,"To configure a ProxyEndpoint to listen on both HTTP and HTTPS, you need to include two <VirtualHost> elements within the <HTTPProxyConnection> section. One <VirtualHost> should have the value ""default"", representing the HTTP connection, and the other should have the value ""secure"", representing the HTTPS connection.
+Here's an example of the configuration:
+<HTTPProxyConnection>
+  <BasePath>/weather</BasePath> 
+  <VirtualHost>default</VirtualHost>
+  <VirtualHost>secure</VirtualHost>
+  <Properties/>
+</HTTPProxyConnection>
+This configuration ensures that the API proxy can accept requests over both HTTP and HTTPS. ","The correct XML configuration for a ProxyEndpoint that listens on both HTTP and HTTPS is as follows:
+
+```xml
+<HTTPProxyConnection>
+  <BasePath>/v0/weather</BasePath>
+  <Properties/>
+  <VirtualHost>default</VirtualHost>
+  <VirtualHost>secure</VirtualHost>
+</HTTPProxyConnection>
+```",True
+XML Configuration for Adding Quota Policy,"Example XML Snippet:
+<ProxyEndpoint name=""default"">
+  <PreFlow>
+    <Request>
+      <Step>
+        <Name>YourQuotaPolicyName</Name>
+      </Step>
+    </Request>
+  </PreFlow>
+  ... 
+</ProxyEndpoint> ",This question falls beyond my expertise.,False
+XML Configuration for Attaching a policy to a ProxyEndpoint or TargetEndpoint Flow,"<ProxyEndpoint name=""default"">
+  <PreFlow>
+    <Request>
+      <Step><Name>QuotaPolicy</Name></Step>
+    </Request>
+  </PreFlow>
+  <HTTPProxyConnection> 
+    <BasePath>/weather</BasePath> 
+    <VirtualHost>default</VirtualHost> 
+  </HTTPProxyConnection> 
+  <RouteRule name=""default""> 
+    <TargetEndpoint>default</TargetEndpoint> 
+  </RouteRule> 
+</ProxyEndpoint>",This question falls beyond my expertise.,False
+Give simple example of a ProxyEndpoint XML configuration with no policy attachments,"<ProxyEndpoint name=""default"">
+  <HTTPProxyConnection>
+    <BasePath>/weather</BasePath> 
+    <VirtualHost>default</VirtualHost>
+  </HTTPProxyConnection>
+  <RouteRule name=""default"">
+    <TargetEndpoint>default</TargetEndpoint>
+  </RouteRule>
+</ProxyEndpoint>",This question falls beyond my expertise.,False
+Give an example of ProxyEndpoint XML configuration with Policies and Attachment Methods,"<ProxyEndpoint name=""default"">
+  <PreFlow>
+    <Request>
+      <Step>
+        <Name>MyPolicy</Name>
+      </Step>
+    </Request>
+  </PreFlow>
+  ... 
+</ProxyEndpoint>",This question falls beyond my expertise.,False
+XML snippet for JSON to XML Transformation,"<ProxyEndpoint name=""default"">
+  <PreFlow>
+    <Request>
+      <Step>
+        <Name>JSONtoXMLPolicy</Name> 
+      </Step>
+    </Request>
+  </PreFlow>
+  ... 
+</ProxyEndpoint>",This question falls beyond my expertise.,False
+XML snippet for XML to JSON Transformation,"<ProxyEndpoint name=""default"">
+  <PostFlow>
+    <Response>
+      <Step>
+        <Name>XMLtoJSONPolicy</Name>
+      </Step>
+    </Response>
+  </PostFlow>
+  ... 
+</ProxyEndpoint>",This question falls beyond my expertise.,False
+Give XML Configuration for Defining Name and Base Path in Apigee ProxyEndpoint Configuration,"<ProxyEndpoint name=""my-api-proxy"">
+  <HTTPProxyConnection>
+    <BasePath>/my-api</BasePath> 
+    <VirtualHost>default</VirtualHost>
+  </HTTPProxyConnection>
+  <RouteRule name=""default"">
+    <TargetEndpoint>default</TargetEndpoint>
+  </RouteRule>
+</ProxyEndpoint>",This question falls beyond my expertise.,False
+XML snippet for Attaching Policies to ProxyEndpoint Request Flow,"<ProxyEndpoint name=""my-api-proxy"">
+  <PreFlow>
+    <Request>
+      <Step>
+        <Name>VerifyApiKey</Name> 
+      </Step>
+    </Request>
+  </PreFlow>
+  <HTTPProxyConnection>
+    <BasePath>/my-api</BasePath>
+    <VirtualHost>default</VirtualHost>
+  </HTTPProxyConnection>
+  <RouteRule name=""default"">
+    <TargetEndpoint>default</TargetEndpoint>
+  </RouteRule>
+</ProxyEndpoint>",This question falls beyond my expertise.,False
+XML snippet for Attaching Policies to TargetEndpoint Response Flow,"<TargetEndpoint name=""default"">
+  <PostFlow>
+    <Response>
+      <Step>
+        <Name>MyPolicy</Name>
+      </Step>
+    </Response>
+  </PostFlow>
+  ... 
+</TargetEndpoint>",This question falls beyond my expertise.,False
+XML config for Using Multiple Virtual Hosts in Apigee ProxyEndpoint,"<ProxyEndpoint name=""multi-host-api"">
+  <HTTPProxyConnection>
+    <BasePath>/v1</BasePath>
+    <VirtualHost>dev.example.com</VirtualHost>
+    <VirtualHost>api.example.com</VirtualHost>
+  </HTTPProxyConnection>
+  <RouteRule name=""default"">
+    <TargetEndpoint>default</TargetEndpoint>
+  </RouteRule>
+</ProxyEndpoint>",This question falls beyond my expertise.,False
+Give XML snippet for Controlling Policy Execution Order in Apigee,"<ProxyEndpoint name=""my-api-proxy"">
+  <PreFlow>
+    <Request>
+      <Step>
+        <Name>VerifyApiKey</Name>
+      </Step>
+      <Step>
+        <Name>JSONThreatProtection</Name>
+      </Step>
+    </Request>
+  </PreFlow>
+  ...
+</ProxyEndpoint>",This question falls beyond my expertise.,False
+Give XML Configuration for Quota Policy,"<Quota name=""CheckQuota""> 
+  <Interval ref=""verifyapikey.verify-api-key.apiproduct.developer.quota.interval"">1</Interval>
+  <TimeUnit ref=""verifyapikey.verify-api-key.apiproduct.developer.quota.timeunit"">hour</TimeUnit>
+  <Allow count=""200"" countRef=""verifyapikey.verify-api-key.apiproduct.developer.quota.limit""/>
+</Quota>",This question falls beyond my expertise.,False
+Give XML configuration for chaining api proxies,"Use Local Target connection instead of http connection
+<LocalTargetConnection>
+    <APIProxy>myproxy2</APIProxy>
+    <ProxyEndpoint>default</ProxyEndpoint>
+</LocalTargetConnection>",This question falls beyond my expertise.,False
+Create XML snippet for adding spike arrest policy,"<SpikeArrest async=""false"" continueOnError=""false"" enabled=""true"" name=""Spike-Arrest"">
+    <DisplayName>Spike Arrest</DisplayName>
+    <Properties/>
+    <Identifier ref=""request.header.some-header-name""/>
+    <MessageWeight ref=""request.header.weight""/>
+    <Rate>30ps</Rate>
+</SpikeArrest>","```xml
+<SpikeArrest name=""Spike-Arrest"">
+    <Rate>10ps</Rate>
+</SpikeArrest>
+```",False
+XML configuration for Adding a verify api key Policy to Your API Proxy ,"<ProxyEndpoint name=""default"">
+    <PreFlow>
+        <Request>
+            <Step>
+                <Name>VerifyAPIKey</Name>
+            </Step>
+        </Request>
+    </PreFlow>
+    <HTTPProxyConnection>
+        <BasePath>/weather</BasePath>
+        <VirtualHost>default</VirtualHost>
+    </HTTPProxyConnection>
+    <RouteRule name=""default"">
+        <TargetEndpoint>default</TargetEndpoint>
+    </RouteRule>
+XML configuration for specifying error response 
+<TargetEndpoint name=""default"">","To add a Verify API Key policy to your API proxy, you can use the following XML configuration:
+
+```xml
+<ProxyEndpoint name=""default"">
+  ...
+  <PreFlow name=""PreFlow"">
+    <Request>
+      <Step>
+        <Name>verify-api-key</Name>
+      </Step>
+      <Step>
+        <Name>FaultInFlow</Name>
+        <Condition>(oauthV2.verify-api-key.failed = ""true"")</Condition>
+      </Step>
+    </Request>
+    <Response/>
+  </PreFlow>      
+</ProxyEndpoint>
+```
+
+In this configuration, the `VerifyAPIKey` policy is added as a step in the `PreFlow` of the `ProxyEndpoint`. If the API key is missing or invalid, the `oauthV2.verify-api-key.failed` variable is set to true, and the `FaultInFlow` step is executed based on the condition.",False
+XML configuration for Modifying Backend Responses with Policies,"<TargetEndpoint name=""default"">
+  <PostFlow>
+    <Response>
+      <Step>
+        <Name>ModifyResponsePolicy</Name> 
+      </Step>
+    </Response>
+  </PostFlow>
+  ...
+</TargetEndpoint>",This question falls beyond my expertise.,False
+What is the purpose of an API proxy in Apigee?,"An API proxy acts as an intermediary between client applications and backend services, providing security, rate limiting, and other management capabilities.","The purpose of an API proxy in Apigee is to decouple the developer-facing API from backend services. This shields developers from code changes and enables innovation at the edge without impacting internal development teams. API proxies allow developers to continue calling the same interface uninterrupted, even as backend changes are made. Additionally, API proxies handle security, authorization, analysis, monitoring, and monetization tasks, allowing developers to access services without needing to know the implementation details of those services.",True
+How can you make an API proxy accessible through multiple domain names,Use multiple <VirtualHost> elements within the <HTTPProxyConnection> element of the ProxyEndpoint configuration [our conversation].,This question falls beyond my expertise.,False
+In which flow would you place a policy to modify the response from the backend service before it's sent to the client?,You would attach the policy to the <Response> section of the TargetEndpoint's PostFlow [our conversation].,You would place a policy to modify the response from the backend service in the PostFlow.,False
+How do you define the base path for an API proxy? ,The base path is specified using the <BasePath> element within the <HTTPProxyConnection> of the ProxyEndpoint configuration [our conversation].,"The base path for an API proxy is defined as a URI fragment that appears after the http(s)://[host] address of your API proxy. It is used by Edge to match and route incoming request messages to the proper API proxy. The base path must be unique, and it defaults to the value specified for the Name field converted to all lower case.",False
+How do you control the order in which policies are executed within a flow? ,The order of <Step> elements within a <Request> or <Response> section determines the policy execution order [our conversation].,"The order in which policies are executed within a flow is controlled by the sequence in which they are added to the flow. The contents of a flow execute in a sequence, so you can determine the execution order by arranging the policies in the desired sequence within the flow configuration.",False
+What is the primary purpose of API product configuration in Apigee? ,"API products bundle APIs and make them available to app developers, controlling access and enforcing usage policies.","The primary purpose of API product configuration in Apigee is to bundle API proxies with a service plan, which can set access limits, provide security, allow monitoring and analytics, and offer additional features. API products serve as the central mechanism for authorization and access control to your APIs.",True
+ What are the two main types of developer portals provided by Apigee Edge,Apigee Edge offers integrated portals and Drupal-based portals for developer engagement.,The two main types of developer portals provided by Apigee Edge are the Integrated portal and the Drupal-based portal.,True
+How do app developers obtain credentials to access APIs managed by Apigee,"Developers register their apps and are provided with API keys, which are associated with API products granting access to specific APIs.","App developers obtain credentials to access APIs managed by Apigee by registering their apps and choosing the APIs they want to use. Upon registration, they receive unique API credentials, which include consumer keys and secrets, needed to access the APIs. These credentials must be included in every request to an API proxy.",True
+What is the role of the Apigee runtime in API management?,"The Apigee runtime is responsible for executing API proxies, enforcing policies, and collecting analytics data.","The role of the Apigee runtime in API management is to provide the infrastructure for creating, securing, managing, and operating APIs. It allows you to build API proxies, apply policies for security, rate-limiting, mediation, caching, and customize the behavior of your API proxies. The runtime also supports the integration of Node.js modules to create APIs and API mashups, leveraging benefits such as message transformation, security, and analytics.",True
+What security mechanism does Apigee use to protect access to APIs? ,Apigee uses API keys and OAuth tokens for authentication and authorization to control access to APIs.,"Apigee uses several security mechanisms to protect access to APIs, including OAuth 2.0, API key enforcement, and two-factor authentication. OAuth 2.0 adds authentication by verifying an access token, while API key enforcement involves validating request credentials using a VerifyAPIKey policy or an OAuth/VerifyAccessToken policy. Additionally, Apigee recommends using two-factor authentication for added security.",False
+How are API resources grouped and managed within Apigee,"API resources are bundled into API products, which define access levels, quotas, and other usage restrictions.","In Apigee, API resources are grouped and managed within API products. An API product is a bundle of API proxies combined with a service plan. The API resources bundled in an API product can come from one or more APIs, allowing you to mix and match resources to create specialized feature sets. API products are the central mechanism for authorization and access control to your APIs, and they enable you to set different properties, such as access limits, security, monitoring, analytics, and pricing levels.",True
+What is the function of quotas in API product management? ,"Quotas define limits on the number of requests allowed for a particular API product, helping protect backend systems from overload.","Quotas in API product management help protect your servers from being overwhelmed if a product is popular and receiving a large amount of requests. They can also differentiate your product line by bundling resources with different quota levels, such as offering a high quota as a premium product and a lower quota as a basic product. Quotas provide a uniform setting across all API proxies in the API product and allow for runtime changes to the quota setting, which automatically updates quota policies that reference the value.",True
+What are OAuth scopes used for in Apigee? ,"OAuth scopes define the level of access granted to an API, allowing for fine-grained control over what resources and actions an app can perform.","OAuth scopes in Apigee are used as an added level of security to define specific permissions that must be present in access tokens sent through the product. They ensure that the scopes associated with the access token match those defined in the API product, allowing the requesting app to access a particular API resource. This helps in controlling and securing access to API resources based on the defined scopes.",True
+"What are the access levels available for API products, and how do they impact developer access? ","API products can be Public, Private, or Internal only, controlling their visibility and accessibility to different developer groups","The access levels available for API products are:
+
+1. **Public**: These API products are available to all developers and can be added to integrated or Drupal-based developer portals.
+
+2. **Private or Internal only**: These API products are designed for private or internal use. There is no functional difference between Private and Internal only access levels; the label is chosen based on the intended audience. For the integrated portal, private or internal only API products can be made available to app developers as required. For Drupal-based developer portals, access to these API products can be managed on the developer portal.
+
+These access levels impact developer access by determining who can access the API products. Public access allows all developers to use the API products, while Private or Internal only access restricts usage to specific developers or internal teams.",True
+How are app developers registered in Apigee?,"Developers can self-register through a developer portal, be added by an administrator, or imported using the management API.","App developers in Apigee are registered using one of the following methods:
+
+1. **Automated Registration**: By using Apigee Edge Developer Services, you can automate the registration process. This allows developers to register themselves through a developer portal.
+
+2. **Manual Registration**: As an API provider, you might choose to manually register developers to have more control over the process. This can be done through the Apigee Edge UI or API.
+
+Upon registration, an app developer receives an API key that they must include in every request to an API proxy included in the API product. The key is authenticated, and if successful, the request is allowed to access the backend service. You can also revoke the key or set a time limit for it.",True
+What are the key concepts to understand when creating API products?,"Key concepts include API keys, quotas, OAuth scopes, and access levels, all of which contribute to controlling and securing API access.","The key concepts to understand when creating API products include:
+
+1. **API keys**: These are bound to one or more API products and enforce a binding between an app and the bundle of URIs that the app is permitted to consume.
+
+2. **Automatic versus manual key approval**: This involves the process of approving API keys either automatically or manually.
+
+3. **Quotas**: These are limits set on the number of API requests that can be made within a specified time period.
+
+4. **OAuth scopes**: These define the permissions associated with the access token presented by the app.
+
+5. **Access levels**: These determine the level of access granted to the API resources.
+
+Understanding these concepts is crucial for effectively creating and managing API products.",True
+ What is the maximum size for consumer key and secret when importing existing credentials? ,The maximum size for a consumer key is 2 KB and for a consumer secret is 2 KB.,The maximum size for both the consumer key and the consumer secret when importing existing credentials is 2 KB each.,True
+What does an API proxy do?,"An API proxy intercepts requests from clients and directs them to the backend service, applying policies along the way.","An API proxy functions as a facade that decouples the developer-facing API from backend services. It maps a publicly available HTTP endpoint to your backend service, allowing developers to access your services without needing to know the implementation details. The API proxy handles security, authorization, analysis, monitoring, and monetization tasks, shielding developers from backend code changes and enabling innovation without impacting internal development teams.",False
+What is a common use case for setting different quota limits for API products,"Different quota limits can differentiate product tiers, offering higher limits for premium products.","A common use case for setting different quota limits for API products is to offer tiered access levels. For example, you might provide one API product with a low access limit, such as 1000 requests per day, for a bargain price, and another API product with a much higher access limit for a higher price. This allows you to cater to different customer needs and price points. Additionally, you might offer a free API product with read-only access and a paid product with read/write access to the same resources.",True
+Where do you add a policy in an API proxy configuration? ,Policies are added within the flows of a ProxyEndpoint or TargetEndpoint using <Step> elements,You can attach a policy to a ProxyEndpoint or TargetEndpoint Flow in an API proxy configuration.,True
+why is it important to attach a Quota policy to the request flow rather than the response flow?,"If you were to attach a Quota policy to the response flow, it would count the responses received from the backend service rather than the requests to the API proxy","Attaching a Quota policy to the request flow is important because it allows you to enforce rate limits before the request is processed further. By doing so, you can prevent excessive usage of resources early in the request lifecycle, ensuring that requests exceeding the quota are rejected before any additional processing occurs. This helps in managing resource consumption efficiently and maintaining the performance and availability of the API.",False
+How can you use Apigee to protect backend services from traffic spikes or overload?,Apigee can protect backend services from traffic spikes and overload by using a Quota policy. This policy can bundle resources for high traffic and differentiate product lines.,"Apigee Edge can protect backend services from traffic spikes or overload by implementing API proxies that allow you to apply policies such as rate limiting and quotas. These policies help manage the amount of traffic that reaches your backend services, ensuring that they are not overwhelmed by excessive requests. Additionally, Apigee Edge provides security features and analytics to monitor and control the traffic effectively.",True
+"Explain the concept of ""flows"" in Apigee and their significance in API proxy development.","In Apigee, the path of processing through the application is guided by flows. A flow is a sequence of logic or stages that make up an API proxy’s processing path. Flows are how Apigee provides places for the logic and behaviour specific paths from the client to backend resource and back to the client.","In Apigee, ""flows"" refer to the sequence of stages or steps that make up an API proxy's processing path. They are crucial in API proxy development as they provide a structured way to apply logic and behavior at specific points from the client to the backend resource and back to the client. Flows allow developers to control the flow of processing by adding logic, condition statements, error handling, and more. They help in defining what happens and when during the API request processing path. By structuring flows, developers can ensure that logic executes in the correct sequence, either at the proxy endpoint or the target endpoint, depending on the interaction required with the client or backend target.",True
+Can you describe the steps involved in creating and deploying a simple API proxy using the Apigee Edge UI?,"The steps to creating and deploying a simple API proxy using the Apigee Edge UI are:
+Click API Proxies in the main window, then click + Proxy
+Select the type of proxy you want to create and click Next
+Configure proxy details including name, base path, description and target URL and click Next
+On the Common Policies page, select Pass through (no authorisation) for security and click Next
+Review the summary and click Create and deploy
+Apigee will create the API proxy and deploy it to your test environment
+Click Edit proxy to see the overview page for the API proxy","To create and deploy a simple API proxy using the Apigee Edge UI, follow these steps:
+
+1. **Sign in to Apigee Edge**: Go to apigee.com/edge and sign in to your account.
+
+2. **Access the Create Proxy Wizard**:
+   - Select ""Develop"" from the left navigation bar.
+   - Click on ""API Proxies.""
+   - Click the ""+Proxy"" button to open the Create Proxy wizard.
+
+3. **Use the Create Proxy Wizard**:
+   - The wizard will guide you through the steps to generate and add minimal features to an API proxy. Follow the on-screen instructions to configure your proxy.
+
+4. **Deploy the API Proxy**:
+   - Once the proxy is created, you can deploy it to an environment (such as test or production) within Apigee Edge.
+
+These steps will help you create and deploy a simple API proxy using the Apigee Edge UI.",False
+"How do API keys work in Apigee, and what role do they play in securing APIs?","When you register as a developer, Edge creates a consumer key and secret to identify requests. The app developer embeds the consumer key into their app, so that it’s included when the app makes requests to an API hosted by Edge. API keys are provisioned for API products as part of an app service plan. When an app attempts to access an API product, authorisation is enforced by Apigee at runtime to ensure that:
+The app is permitted to access a particular API resource
+The requesting app has not exceeded its permitted quota
+If defined, the OAuth scopes defined in the API product match those associated with the access token presented by the app","In Apigee, API keys are a central mechanism for authorization and access control to your APIs. They are provisioned not for the APIs themselves, but for API products, which are bundles of resources with an attached service plan. When an app developer registers their app, it must be associated with at least one API product, resulting in the assignment of a unique consumer key to the app.
+
+The API key acts as a request credential, which the app developer embeds into the app. When the app makes a request to an API hosted by Apigee, it passes the consumer key in the request. If the API uses API key verification, the app must pass the consumer key directly. If the API uses OAuth Token verification, the app must pass a token derived from the consumer key.
+
+API keys play a crucial role in securing APIs by ensuring that only authenticated requests are allowed to access backend services. They can be revoked at any time to prevent access, or a time limit can be set on a key, requiring the developer to refresh it after a specific period.",True
+"What are the different access levels available for API products in Apigee, and how do they control access to APIs?","When defining an API product in Apigee, there are three access levels: Public, Private and Internal only. These access levels determine which developers can use the API product.
+Public API products are available to all developers and can be added to developer portals
+Private and Internal only API products are only integrated and make them available to internal developers. There is no functional difference between the two; the label describes the intended audience
+Note: Apigee recommends that you manage developer accounts directly on your developer portal. This ensures that the accounts are in sync","The different access levels available for API products in Apigee are:
+
+1. **Public**: API products that are available to all developers. These can be added to integrated or Drupal-based developer portals.
+
+2. **Private or Internal only**: API products that are designed for private or internal use. There is no functional difference between Private and Internal only access levels; the label is chosen based on the intended audience. For the integrated portal, these can be made available to app developers as required. For Drupal-based developer portals, access can be managed on the developer portal.
+
+These access levels control access to APIs by determining which developers or apps can access the API products. Public access allows all developers to access the APIs, while Private or Internal only access restricts the APIs to specific developers or internal use.",True
+Explain the role of environments (test and prod) in the Apigee API development lifecycle.,"Apigee Edge has at least two environments by default, test and prod. These provide segregation of data and resources. API proxies are created in the test environment which is typically used for promoting API proxies from development. Once ready, the proxy can be deployed to the prod environment which is used for deploying API proxies during the test environment","In the Apigee API development lifecycle, environments play a crucial role in managing and deploying API proxies. Every organization on Apigee Edge has at least two deployment environments: 'test' and 'prod'. These environments are defined by different network addresses (URLs) and serve distinct purposes:
+
+1. **Test Environment**: This is where you initially create and develop your API proxies. It provides a domain to build and verify API proxies before they are exposed to external developers. The test environment is used for iterative development, allowing you to save iterations of your configuration and debug using tools like the trace tool. It is primarily accessed by internal developers for testing purposes.
+
+2. **Prod Environment**: After testing and verifying the API proxies in the test environment, they are promoted to the prod environment. This environment is where the APIs are made publicly available to app developers. It is crucial to ensure that the APIs are fully tested and ready before deploying them to the prod environment to avoid exposing incomplete or faulty APIs to external users.
+
+The use of these environments helps segregate traffic between APIs under development and those in production, aligning with the software development lifecycle (SDLC) and ensuring a smooth transition from development to production.",True
+How can you use variables to manage state and conditional logic within Apigee API proxies?,"You can access state data through flow variables created by API proxies. An API proxy has access to variables that represent its execution state. You can also access these variables from the XML that configures your API proxies and policies. These variables are held by Apigee Edge, some exist by default, while others can be created as a logic requirement. You can have API proxies execute conditionally. Just as in most programming languages, in an API proxy you can have code execute conditionally. Conditions are often based on API proxy state, which you can access through flow variables.","In Apigee API proxies, you can use flow variables to manage state and implement conditional logic. These variables represent the execution state and can be accessed from the XML that configures your API proxies and policies. You can also access them when extending an API proxy with a procedural language like Java, JavaScript, or Python.
+
+To implement conditional logic, you can use these flow variables to create conditions that determine how the API proxy processes requests. For example, you can check the user agent or evaluate the current environment using the `environment.name` variable before enforcing a policy or routing to a backend URL.
+
+Additionally, most logic in an API proxy is implemented using policies, which are configured with XML and arranged in a sequence of steps within a flow. This allows you to execute logic in the best order for your proxy's goals. You can also use shared flows to group reusable sets of functionality, reducing duplication across API proxies.",False
+"Describe the process of importing existing consumer keys and secrets into Apigee. What are the size limits for consumer keys and secrets, and why are they important?","You can import existing consumer keys and secrets into Apigee by using the management API. This is done one key at a time to avoid service disruptions. The size limits for consumer keys and secrets are 2 KB each. These limits help to prevent service disruptions. To import existing consumer keys and secrets, you would first create them in Edge with the management API, one at a time. Then, you would associate the consumer key and secret with one or more API products using the management API. Finally, you can optionally delete the initial consumer key and secret that Edge auto-generated. However, you can keep the auto-generated key because both the imported key and the auto-generated key work in API calls and are displayed on the Developer App Details page in the Management UI","To import existing consumer keys and secrets into Apigee Edge, you need to recreate the existing keys in Edge one at a time using the management API. This process involves using a cURL command to create the consumer keys and secrets in Edge. The cURL command requires specifying the organization, developer email or ID, app name, and the consumer key and secret you wish to import.
+
+The size limits for consumer keys and secrets are 2 KB each. These limits are important to help avoid service disruptions. Staying within these size limits ensures that the system can handle the keys efficiently without performance issues.",False
+What are the differences between an API proxy and an API product in Apigee?,"An API proxy is a façade for one or more web services that mediates access. It’s implemented as a set of configuration files, policies and code that rely on the services provided by the Apigee proxy. An API product is a collection of API resources that are combined with a quota, service plan and API packages for monetisation. Developers create API products to address use cases that solve specific needs, for example, they can create API products that bundle a number of mapping resources to enable developers to easily integrate maps into their applications","An API proxy and an API product in Apigee serve different purposes:
+
+- **API Proxy**: An API proxy is the HTTP endpoint on Apigee Edge that developers use to access your backend services. It defines a mapping of a publicly available HTTP endpoint to a backend service. API proxies can be configured to include security (such as OAuth), perform message transformation (such as XML to JSON), limit traffic to backend services, and perform other operations on the request and response. Edge collects data for analytics on API proxies.
+
+- **API Product**: An API product is a bundle of API proxies combined with a service plan. It is the central mechanism that Edge uses for authorization and access control to your APIs. An API product can set access limits on API proxies, provide security, allow monitoring and analytics, and offer additional features. API products are used to make APIs available to app developers for consumption, and they can include a collection of API resources, a service plan, and optional metadata for monitoring or analytics.
+
+In summary, an API proxy is a technical configuration for accessing backend services, while an API product is a business-oriented bundle that includes API proxies and additional features for managing access and usage.",True
+What are the advantages of using the Apigee remote service targets feature?,The sources provided do not have information regarding the advantages of using the Apigee remote service targets feature.,This question falls beyond my expertise.,False
+How can you convert an API proxy's payload from XML to JSON using Apigee policies? What changes does the XML to JSON policy make to the response?,"You can convert an API proxy’s payload from XML to JSON by adding an XML to JSON policy to the pre-flow response in the proxy. This policy is in the Mediation category. This can be done by dragging and dropping the policy from the Navigator into the flow editor, leaving the default name and clicking Add. This policy changes the “Content-Type header” from XML to JSON in the response","To convert an API proxy's payload from XML to JSON using Apigee policies, you can add the XMLtoJSON policy to your proxy. This policy converts the payload of an XML message to JSON and changes the response's Content-Type header.",True
+"How can you leverage Apigee's analytics capabilities to monitor API performance, identify usage patterns, and troubleshoot issues?","Apigee provides powerful tools to monitor and understand usage trends. It has an API that provides access to low-level capabilities that are not exposed by the UI. The API has endpoints that take data containing configuration information, requiring authentication. This can be done by passing configuration information, such as username and password. Apigee provides a trace tool that lets you debug end-to-end request and response flows. The tool displays timestamps, which can help you isolate which policies are taking the longest to execute. This enables you to identify potential bottlenecks in your API proxies. It also displays the base path of the request, ensuring that a policy is routing the message to the correct server. Results of policy execution are also shown in the trace which lets you see if a message has been altered as expected, for instance, whether a message has been transformed from XML to JSON or if the message is being cached","You can leverage Apigee's analytics capabilities to monitor API performance, identify usage patterns, and troubleshoot issues by using the following features:
+
+1. **API Analytics**: Apigee Edge API Analytics provides tools to see short- and long-term usage trends of your APIs. You can segment your audience by top developers and apps, understand usage by API method, and create custom reports on business- or operational-level information.
+
+2. **Data Collection**: As data passes through Edge, several default types of information are collected, including URL, IP, user ID for API call information, latency, and error data.
+
+3. **Command-line Interface and RESTful APIs**: You can access and control the Analytics Service through a command-line interface or RESTful APIs for more detailed analysis.
+
+4. **Trace Tool**: Apigee provides a trace tool that lets you debug end-to-end request and response flows. The trace results display request and response headers and payloads, policy execution, variable values, and any errors that may have occurred during the flow.
+
+These tools and features help in monitoring API performance, identifying usage patterns, and troubleshooting issues effectively.",False
+Describe the key features and benefits of Apigee's monetisation capabilities. How can you create different monetisation models for your APIs?,"Monetisation in Apigee turns developer communities into channels for digital assets.You can create a variety of plans that charge developers for the use of your API products. This allows you to generate revenue from your APIs. Some of the benefits of using Apigee's monetisation capabilities include the ability to:
+○ Create different pricing models, such as charging per API call, per month, or per user
+○ Track API usage and revenue
+○ Manage developer accounts and subscriptions
+○ Integrate with billing systems","Apigee's monetization capabilities provide the financial infrastructure and relationships to turn your developer community into a channel for your digital assets. Key features and benefits include:
+
+1. **Variety of Rate Plans**: You can create a variety of rate plans to charge developers for the use of your API products or to pay developers in revenue-sharing scenarios. These plans include pre-paid plans, post-paid plans, fixed-fee plans, variable rate plans, ""freemium"" plans, and plans tailored to specific developers or groups of developers.
+
+2. **Reporting and Billing Facilities**: Monetization includes comprehensive reporting and billing facilities to manage and track financial transactions related to API usage.
+
+To create different monetization models for your APIs, you can set different properties on each API product. For example, you might offer one API product with a low access limit for a bargain price and another with a higher access limit for a higher price. You can also create a free API product with read-only access and a paid product with read/write access.",True
+What are some security best practices to consider when developing and deploying APIs on Apigee?,"The sources do not contain information regarding specific security best practices when developing and deploying APIs on Apigee. However, policies are used for access control, meaning they are used in implementing security. When creating API products, make sure to include the appropriate security policy in your API proxies, such as the Verify API Key or OAuth v2.0 policies. This ensures that only authorised clients can access your APIs.","Some security best practices to consider when developing and deploying APIs on Apigee include:
+
+1. Use OAuth2 for secure access to your APIs.
+2. Implement two-factor authentication for your Apigee account.
+3. Secure API proxies with API keys.
+4. Use SAML policies in an API proxy for additional security.
+5. Consider content-based security measures such as masking and hiding data.
+6. Implement last-mile security to protect data in transit.
+
+These practices help ensure that your APIs are secure and that access is controlled and monitored effectively.",False
+How do you use the Apigee management API to interact with Apigee resources programmatically? What type of authentication is needed?,"The Apigee management API has endpoints that require authentication using RESTful principles. You can send HTTP GET, POST, PUT and DELETE methods to these endpoints. To use the management API, you need to authenticate your requests using one of the following methods:
+○ OAuth2
+○ SAML
+○ Basic Auth (not recommended)
+Apigee recommends using two-factor authentication","To interact with Apigee resources programmatically using the Apigee management API, you need to pass authentication information, such as a username and password, to access the API endpoints. The recommended authentication methods include OAuth2 and SAML. Basic Auth is also mentioned, but it is not recommended. Additionally, Apigee recommends using two-factor authentication for enhanced security.",True
+Can you explain the process of registering app developers and managing their accounts in Apigee? What are the recommendations for managing developer accounts on developer portals?,"App registration provides the primary mechanism for controlling access to APIs. Developers can self-register through a developer portal, Drupal 10 or Drupal 7. Administrators can register developers using the Edge Management UI or API. Developers can also be registered through an app developed by the provider. When a portal user creates an account, an email address is generated. This serves as the primary key used by Edge to identify the developer.You can manage developer accounts using the Edge UI and Classic Edge UI by
+○ Adding a developer
+○ Viewing and editing developer details
+○ Activating or deactivating a developer
+○ Exporting publishing data
+○ Deleting a developer
+○ Searching the list of developers","To register app developers and manage their accounts in Apigee, you can use the following methods:
+
+1. **Using the API**: Administrators can register app developers using the API. This allows for programmatic management of developer accounts.
+
+2. **Integrated Portal**: As a developer portal administrator, you can manage developer accounts directly on your portal. After a developer creates an app on the integrated portal, the developer account information is synced to and available on Edge on the Developers page. The developer account is associated with the app developer record using the developer's email address.
+
+3. **Edge UI**: As an organization administrator, you can manage developers using the Edge UI.
+
+Recommendations for managing developer accounts on developer portals include:
+
+- Manage developer accounts directly on your developer portal to ensure that the developer accounts on the integrated portal and Edge stay in sync.
+- Typically, app developers register to use your API products using your developer portal. This process is described in the ""Build your portal"" section.
+- If you want more control over the app registration process, you can choose to register apps in Edge, which is useful for internal development teams or on behalf of a developer without access to your portal.
+
+Apigee recommends managing developer accounts directly on your developer portal, especially if you are using the integrated portal, to maintain synchronization between the portal and Edge.",True
+How do you create and manage API packages in Apigee?,The source documents do not provide information on how to create and manage API packages in Apigee.,This question falls beyond my expertise.,False
+"What are some of the common challenges faced when migrating APIs to Apigee, and how can they be addressed?","The sources provided do not include information regarding the common challenges faced when migrating APIs to Apigee, or how these challenges can be addressed.",This question falls beyond my expertise.,False
+Describe the role of the Apigee Edge UI and its key features for API proxy development.,"The Apigee Edge UI is a browser-based tool used to create, configure and manage proxies and products. It provides a graphical interface to perform tasks such as:
+○ Creating API proxies
+○ Creating products that bundle proxies for client requests
+○ Managing developers and developer apps
+○ Configuring test and production environments
+○ Implementing Javascript and Node.js applications","The Apigee Edge UI is a browser-based tool used to create, configure, and manage API proxies and API products. Its key features for API proxy development include:
+
+1. **Creating API Proxies**: You can edit code and trace request flows through your proxies using the UI.
+2. **Creating API Products**: The UI allows you to bundle proxies for exposure to client requests.
+3. **Managing Developers and Developer Apps**: You can manage developers and their applications through the UI.
+4. **Configuring Environments**: The UI enables you to configure your test and production environments.
+5. **Implementing Applications**: You can implement JavaScript and Node.js applications using the UI.
+
+The UI provides a user-friendly interface to perform these tasks, although some tasks may require using the API directly.",True
+How can Python be used in conjunction with API proxies in Apigee to manipulate or transform data within an API request or response?,This question falls beyond my expertise.,This question falls beyond my expertise.,True
+Can you write a simple Python script to interact with the Apigee Edge API?,This question falls beyond my expertise.,This question falls beyond my expertise.,True
+How can Python be leveraged to automate the process of importing existing consumer keys and secrets into Apigee?,This question falls beyond my expertise.,This question falls beyond my expertise.,True
+Explain how Python can be used to generate custom reports from Apigee analytics data.,This question falls beyond my expertise.,This question falls beyond my expertise.,True
+Is it possible to write a Python script that programmatically creates and configures API products in Apigee?,This question falls beyond my expertise.,This question falls beyond my expertise.,True
+How can Python be used to manage and automate the lifecycle of API keys in Apigee?,This question falls beyond my expertise.,This question falls beyond my expertise.,True
+Can you illustrate how Python can be used to implement custom logic within an Apigee API proxy using Java callouts?,This question falls beyond my expertise.,This question falls beyond my expertise.,True
+How can Python be used to interact with Apigee's OAuth 2.0 implementation for tasks like token validation or client registration?,This question falls beyond my expertise.,This question falls beyond my expertise.,True
+Explain how Python can be used to create and manage developers and developer apps programmatically in Apigee.,This question falls beyond my expertise.,This question falls beyond my expertise.,True
+How might Python be used to integrate Apigee with external data sources or systems for tasks like data enrichment or logging?,This question falls beyond my expertise.,This question falls beyond my expertise.,True
+Describe how Python can be used to create automated tests for Apigee API proxies.,This question falls beyond my expertise.,This question falls beyond my expertise.,True
+Provide a Python code snippet demonstrating the use of the 'curl' command to interact with an Apigee API proxy deployed in a local development environment,This question falls beyond my expertise.,This question falls beyond my expertise.,True
+"How can Python be used to monitor Apigee environments and trigger alerts based on specific conditions, such as error rates or latency?",This question falls beyond my expertise.,This question falls beyond my expertise.,True
+Explain how Python can be used to perform health checks on backend services used by Apigee API proxies.,This question falls beyond my expertise.,This question falls beyond my expertise.,True
+Can you write a simple Python script that uses the Apigee API to deploy an API proxy to a specific environment?,This question falls beyond my expertise.,This question falls beyond my expertise.,True
+"How can Python be used to manage and configure Apigee policies programmatically, such as security policies or traffic management policies?",This question falls beyond my expertise.,This question falls beyond my expertise.,True
+"Illustrate how Python can be used to debug an Apigee API proxy, including techniques for inspecting message flows and variable values.",This question falls beyond my expertise.,This question falls beyond my expertise.,True
+Describe how Python can be used to interact with Apigee's caching mechanisms to improve API performance.,This question falls beyond my expertise.,This question falls beyond my expertise.,True
+Explain how Python can be used to implement custom analytics logic by processing Apigee analytics data and generating custom reports or visualizations.18,This question falls beyond my expertise.,This question falls beyond my expertise.,True
+How can Python be used to manage and configure Apigee environments and environment groups programmatically?,This question falls beyond my expertise.,This question falls beyond my expertise.,True
