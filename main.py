@@ -222,7 +222,7 @@ def get_evaluation_prompt():
 
 def get_test_result_filename(embed_model, genai_model, accuracy):
     accuracy = int(accuracy)
-    return f"test_results/{embed_model}_{genai_model}_{accuracy}.csv"
+    return f"test_results/{embed_model}_{genai_model}_{accuracy}.csv".replace(":", "-")
 
 
 def get_match_result(evaluation_results):
@@ -297,7 +297,7 @@ if __name__ == '__main__':
     genai_source = "Ollama"
     genai_model = "qwen2.5-coder:latest"
 
-    chroma_path = f"{embed_source}-{embed_model}-chroma"
+    chroma_path = f"{embed_source}-{embed_model}-chroma".replace(":", "-")
 
     available_models = read_from_json(json_file="available_models.json")
 
